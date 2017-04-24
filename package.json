@@ -1,0 +1,11 @@
+{
+  "name": "alloyUI-practice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alireza-saberi/alloyUI-practice.git",
+  "author": "alan.saberi@pj.ca",
+  "license": "MIT",
+  "dependencies": {
+    "alloy-ui": "^3.1.0"
+  }
+}
