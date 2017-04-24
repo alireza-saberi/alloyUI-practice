@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="practise on AlloyUI">
+        <meta name="keywords" content="liferay, alloyui">
+        <title>Alloyui practice</title>
+        <link rel="icon" href="img/alloyUI.png" type="image" sizes="16x16">
+        <link href="http://cdn.alloyui.com/2.0.0/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
+    </head>
+    <body class="container">
+    <div id="myWrapper">
+        <div class="controls">
+            <label for="mode">Language Mode:</label>
+            <select id="mode">
+                <option>javascript</option>
+                <option>json</option>
+                <option>xml</option>
+                <option>php</option>
+            </select>
+        </div>
+        <div id="myEditor"></div>
+    </div>
+
+        <script src="http://cdn.alloyui.com/2.0.0/aui/aui-min.js"></script>
+        <script>
+            YUI().use(
+            'aui-ace-editor',
+            function(Y) {
+                var editor = new Y.AceEditor(
+                {
+                    boundingBox: '#myEditor',
+                    height: '200',
+                    mode: 'javascript',
+                    value: 'alert("Write something here...");',
+                    width: '700'
+                }
+                ).render();
+
+                var mode = Y.one('#mode');
+
+                if (mode) {
+                var contents = {
+                    javascript: 'alert("Write something here...");',
+                    json: '{"value": "Write something here..."}',
+                    php: '<?php echo "Write something here..."; ?>',
+                    xml: '<value attr="something">Write something here...</value>'
+                };
+
+                var currentMode = 'javascript';
+
+                var updateValue = function() {
+                    editor.set('value', contents[currentMode]);
+                };
+
+                mode.on(
+                    'change',
+                    function(event) {
+                    currentMode = this.val();
+                    editor.set('mode', currentMode);
+                    updateValue();
+                    }
+                );
+                }
+            }
+            );
+        </script>
+    </body>
+</html>
