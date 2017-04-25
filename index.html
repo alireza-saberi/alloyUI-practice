@@ -21,15 +21,21 @@
             </select>
         </div>
         <div id="myEditor"></div>
-
+    </div>
         <!--Audio module test-->
         <div id="myAudio"></div>
-    </div>
 
+        <div id="myCarousel">
+            <div class="carousel-item" style="background: url(http://alloyui.com/carousel/img/1.jpg);"></div>
+            <div class="carousel-item" style="background: url(http://alloyui.com/carousel/img/2.jpg);"></div>
+            <div class="carousel-item" style="background: url(http://alloyui.com/carousel/img/3.jpg);"></div>
+            <div class="carousel-item" style="background: url(http://alloyui.com/carousel/img/4.jpg);"></div>
+        </div>
+        
         <script src="http://cdn.alloyui.com/2.0.0/aui/aui-min.js"></script>
         <script>
             YUI().use(
-            'aui-ace-editor','aui-audio',
+            'aui-ace-editor','aui-audio','aui-carousel',
             function(Y) {
                 // setting up a ace editor
                 var editor = new Y.AceEditor(
@@ -63,10 +69,19 @@
                     }
                 );
                 }
+
                 var player = new Y.Audio(
                     {
                         boundingox: '#myAudio',
                         url: 'http://alloyui.com/audio/zelda.mp3'
+                    }
+                ).render();
+
+                var carousel = new Y.Carousel(
+                    {
+                        contentBox: '#myCarousel',
+                        height: 250,
+                        width: 700
                     }
                 ).render();
             }
