@@ -21,13 +21,17 @@
             </select>
         </div>
         <div id="myEditor"></div>
+
+        <!--Audio module test-->
+        <div id="myAudio"></div>
     </div>
 
         <script src="http://cdn.alloyui.com/2.0.0/aui/aui-min.js"></script>
         <script>
             YUI().use(
-            'aui-ace-editor',
+            'aui-ace-editor','aui-audio',
             function(Y) {
+                // setting up a ace editor
                 var editor = new Y.AceEditor(
                 {
                     boundingBox: '#myEditor',
@@ -37,32 +41,34 @@
                     width: '700'
                 }
                 ).render();
-
+                // mode selector for ace editor
                 var mode = Y.one('#mode');
-
                 if (mode) {
-                var contents = {
-                    javascript: 'alert("Write something here...");',
-                    json: '{"value": "Write something here..."}',
-                    php: '<?php echo "Write something here..."; ?>',
-                    xml: '<value attr="something">Write something here...</value>'
-                };
-
-                var currentMode = 'javascript';
-
-                var updateValue = function() {
-                    editor.set('value', contents[currentMode]);
-                };
-
+                    var contents = {
+                        javascript: 'alert("Write something here...");',
+                        json: '{"value": "Write something here..."}',
+                        php: '<?php echo "Write something here..."; ?>',
+                        xml: '<value attr="something">Write something here...</value>'
+                    };
+                    var currentMode = 'javascript';
+                    var updateValue = function() {
+                        editor.set('value', contents[currentMode]);
+                    };
                 mode.on(
                     'change',
                     function(event) {
-                    currentMode = this.val();
-                    editor.set('mode', currentMode);
-                    updateValue();
+                        currentMode = this.val();
+                        editor.set('mode', currentMode);
+                        updateValue();
                     }
                 );
                 }
+                var player = new Y.Audio(
+                    {
+                        boundingox: '#myAudio',
+                        url: 'http://alloyui.com/audio/zelda.mp3'
+                    }
+                ).render();
             }
             );
         </script>
